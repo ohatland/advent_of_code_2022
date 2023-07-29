@@ -28,21 +28,25 @@ func main() {
 	sumCaloriesPerElves := []int{}
 
 	for _, value := range allCalories {
+
 		if value != "" {
 
 			value, _ := strconv.Atoi(value)
 			current += value
+
 		} else {
 
 			sumCaloriesPerElves = append(sumCaloriesPerElves, current)
+			sort.Ints(sumCaloriesPerElves[:])
+			sumCaloriesPerElves = sumCaloriesPerElves[1:]
 			current = 0
+
 		}
 	}
 	// fmt.Println(sumCaloriesPerElves)
-	sort.Ints(sumCaloriesPerElves[:])
 
 	topTree := 0
-	for _, v := range sumCaloriesPerElves[len(sumCaloriesPerElves)-3:] {
+	for _, v := range sumCaloriesPerElves {
 		topTree += v
 	}
 	fmt.Println(topTree)
